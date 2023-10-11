@@ -2,6 +2,7 @@ package br.com.josenaldo.catbasket.main;
 
 import br.com.josenaldo.catbasket.application.gateways.CatGateway;
 import br.com.josenaldo.catbasket.application.usecases.CreateCatInteractor;
+import br.com.josenaldo.catbasket.application.usecases.GetCatsInteractor;
 import br.com.josenaldo.catbasket.infrastructure.controllers.CatDTOMapper;
 import br.com.josenaldo.catbasket.infrastructure.gateways.CatEntityMapper;
 import br.com.josenaldo.catbasket.infrastructure.gateways.CatRepositoryGateway;
@@ -15,6 +16,11 @@ public class CatConfig {
     @Bean
     CreateCatInteractor createUseCase(CatGateway catGateway) {
         return new CreateCatInteractor(catGateway);
+    }
+
+    @Bean
+    GetCatsInteractor getCatsUseCase(CatGateway catGateway) {
+        return new GetCatsInteractor(catGateway);
     }
 
     @Bean

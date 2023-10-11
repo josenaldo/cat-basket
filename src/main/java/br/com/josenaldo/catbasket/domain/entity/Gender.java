@@ -1,5 +1,5 @@
 package br.com.josenaldo.catbasket.domain.entity;
 
-public enum Sex {
+public enum Gender {
     FEMALE, MALE
 }

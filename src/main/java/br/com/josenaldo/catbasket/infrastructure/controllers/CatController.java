@@ -1,22 +1,23 @@
 package br.com.josenaldo.catbasket.infrastructure.controllers;
 
 import br.com.josenaldo.catbasket.application.usecases.CreateCatInteractor;
+import br.com.josenaldo.catbasket.application.usecases.GetCatsInteractor;
 import br.com.josenaldo.catbasket.domain.entity.Cat;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("cats")
 public class CatController {
 
-    private CreateCatInteractor createCatInteractor;
-    private CatDTOMapper catDTOMapper;
+    final private CreateCatInteractor createCatInteractor;
+    final private GetCatsInteractor getCatsInteractor;
+    final private CatDTOMapper catDTOMapper;
 
-    public CatController(CreateCatInteractor createCatInteractor, CatDTOMapper catDTOMapper) {
+    public CatController(CreateCatInteractor createCatInteractor, GetCatsInteractor getCatsInteractor, CatDTOMapper catDTOMapper) {
         this.createCatInteractor = createCatInteractor;
+        this.getCatsInteractor = getCatsInteractor;
         this.catDTOMapper = catDTOMapper;
     }
 
@@ -25,5 +26,12 @@ public class CatController {
         Cat cat = catDTOMapper.toCat(request);
         Cat savedCat = createCatInteractor.createCat(cat);
         return catDTOMapper.toResponse(savedCat);
+    }
+
+    @GetMapping
+    public List<CreateCatResponse> getAll() {
+        List<Cat> allCats = getCatsInteractor.getAllCats();
+
+        return allCats.stream().map(catDTOMapper::toResponse).toList();
     }
 }

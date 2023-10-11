@@ -1,8 +1,8 @@
 package br.com.josenaldo.catbasket.infrastructure.controllers;
 
-import br.com.josenaldo.catbasket.domain.entity.Sex;
+import br.com.josenaldo.catbasket.domain.entity.Gender;
 
 import java.time.LocalDate;
 
-public record CreateCatResponse(String name, Sex sex, LocalDate birthDate) {
+public record CreateCatResponse(String name, Gender gender, LocalDate birthDate) {
 }

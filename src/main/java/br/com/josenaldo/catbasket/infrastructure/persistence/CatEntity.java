@@ -1,6 +1,6 @@
 package br.com.josenaldo.catbasket.infrastructure.persistence;
 
-import br.com.josenaldo.catbasket.domain.entity.Sex;
+import br.com.josenaldo.catbasket.domain.entity.Gender;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -20,12 +20,15 @@ public class CatEntity implements Serializable {
     private UUID id;
     private String name;
 
-    private Sex sex;
+    private Gender gender;
     private LocalDate birthDate;
 
-    public CatEntity(String name, Sex sex, LocalDate birthDate) {
+    public CatEntity() {
+    }
+
+    public CatEntity(String name, Gender gender, LocalDate birthDate) {
         this.name = name;
-        this.sex = sex;
+        this.gender = gender;
         this.birthDate = birthDate;
     }
 
@@ -45,12 +48,12 @@ public class CatEntity implements Serializable {
         this.name = name;
     }
 
-    public Sex getSex() {
-        return sex;
+    public Gender getSex() {
+        return gender;
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
+    public void setSex(Gender gender) {
+        this.gender = gender;
     }
 
     public LocalDate getBirthDate() {

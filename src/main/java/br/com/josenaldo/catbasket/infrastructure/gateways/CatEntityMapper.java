@@ -6,7 +6,7 @@ import br.com.josenaldo.catbasket.infrastructure.persistence.CatEntity;
 public class CatEntityMapper {
 
     CatEntity toEntity(Cat catDomainObject) {
-        return new CatEntity(catDomainObject.name(), catDomainObject.sex(), catDomainObject.birthDate());
+        return new CatEntity(catDomainObject.name(), catDomainObject.gender(), catDomainObject.birthDate());
     }
 
     Cat toDomainObject(CatEntity catEntity) {

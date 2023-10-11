@@ -2,6 +2,8 @@ package br.com.josenaldo.catbasket.infrastructure.persistence;
 
 import br.com.josenaldo.catbasket.domain.entity.Gender;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,8 +20,11 @@ public class CatEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
+    @NotNull(message = "Gender is mandatory")
     private Gender gender;
     private LocalDate birthDate;
 

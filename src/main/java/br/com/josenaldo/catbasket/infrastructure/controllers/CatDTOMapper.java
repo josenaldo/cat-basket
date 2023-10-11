@@ -4,7 +4,7 @@ import br.com.josenaldo.catbasket.domain.entity.Cat;
 
 public class CatDTOMapper {
     CreateCatResponse toResponse(Cat cat) {
-        return new CreateCatResponse(cat.name(), cat.gender(), cat.birthDate());
+        return new CreateCatResponse(cat.id(), cat.name(), cat.gender(), cat.birthDate());
     }
 
     public Cat toCat(CreateCatRequest request) {

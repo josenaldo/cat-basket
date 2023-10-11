@@ -3,6 +3,7 @@ package br.com.josenaldo.catbasket.infrastructure.controllers;
 import br.com.josenaldo.catbasket.domain.entity.Gender;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
-public record CreateCatResponse(String name, Gender gender, LocalDate birthDate) {
+public record CreateCatResponse(UUID id, String name, Gender gender, LocalDate birthDate) {
 }

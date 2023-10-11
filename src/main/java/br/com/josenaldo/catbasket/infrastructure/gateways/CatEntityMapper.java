@@ -10,6 +10,6 @@ public class CatEntityMapper {
     }
 
     Cat toDomainObject(CatEntity catEntity) {
-        return new Cat(catEntity.getId(), catEntity.getName(), catEntity.getSex(), catEntity.getBirthDate());
+        return new Cat(catEntity.getId(), catEntity.getName(), catEntity.getGender(), catEntity.getBirthDate());
     }
 }

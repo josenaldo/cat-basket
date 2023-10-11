@@ -48,11 +48,11 @@ public class CatEntity implements Serializable {
         this.name = name;
     }
 
-    public Gender getSex() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setSex(Gender gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

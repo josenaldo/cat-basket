@@ -1,5 +1,6 @@
 package br.com.josenaldo.catbasket.application.usecases;
 
+import br.com.josenaldo.catbasket.application.SortRequest;
 import br.com.josenaldo.catbasket.application.gateways.CatGateway;
 import br.com.josenaldo.catbasket.domain.entity.Cat;
 
@@ -13,7 +14,7 @@ public class GetCatsInteractor {
         this.catGateway = catGateway;
     }
 
-    public List<Cat> getAllCats() {
-        return catGateway.getAllCats();
+    public List<Cat> getAllCats(List<SortRequest> sortRequestList) {
+        return catGateway.getAllCats(sortRequestList);
     }
 }

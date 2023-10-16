@@ -1,8 +1,8 @@
 package br.com.josenaldo.catbasket.main;
 
-import br.com.josenaldo.catbasket.application.gateways.CatGateway;
-import br.com.josenaldo.catbasket.application.usecases.CreateCatInteractor;
-import br.com.josenaldo.catbasket.application.usecases.GetCatsInteractor;
+import br.com.josenaldo.catbasket.domain.application.gateways.CatGateway;
+import br.com.josenaldo.catbasket.domain.application.usecases.CreateCatInteractor;
+import br.com.josenaldo.catbasket.domain.application.usecases.GetCatsInteractor;
 import br.com.josenaldo.catbasket.infrastructure.controllers.CatDTOMapper;
 import br.com.josenaldo.catbasket.infrastructure.controllers.util.SortParameterParser;
 import br.com.josenaldo.catbasket.infrastructure.gateways.CatEntityMapper;

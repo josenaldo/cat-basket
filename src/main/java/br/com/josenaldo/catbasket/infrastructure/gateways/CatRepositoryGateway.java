@@ -1,7 +1,7 @@
 package br.com.josenaldo.catbasket.infrastructure.gateways;
 
-import br.com.josenaldo.catbasket.application.SortRequest;
-import br.com.josenaldo.catbasket.application.gateways.CatGateway;
+import br.com.josenaldo.catbasket.domain.application.SortRequest;
+import br.com.josenaldo.catbasket.domain.application.gateways.CatGateway;
 import br.com.josenaldo.catbasket.domain.entity.Cat;
 import br.com.josenaldo.catbasket.infrastructure.persistence.CatEntity;
 import br.com.josenaldo.catbasket.infrastructure.persistence.CatRepository;
@@ -22,20 +22,27 @@ public class CatRepositoryGateway implements CatGateway {
     }
 
     @Override
-    public Cat createCat(Cat catDomainObject) {
-
-        CatEntity catEntity = catEntityMapper.toEntity(catDomainObject);
+    public Cat createCat(Cat cat) {
+        CatEntity catEntity = catEntityMapper.toEntity(cat);
         CatEntity savedCat = catRepository.save(catEntity);
         return catEntityMapper.toDomainObject(savedCat);
     }
 
     @Override
-    public List<Cat> getAllCats(List<SortRequest> sortRequestList) {
+    public List<Cat> getCats(String byName, List<SortRequest> sortRequestList)  {
+
         Sort sort = sortRequestToJpaSortMapper.mapToJpaSort(sortRequestList);
 
-        List<CatEntity> catEntities = catRepository.findAll(sort);
+        List<CatEntity> entityResults;
 
-        return catEntities.stream().map(catEntityMapper::toDomainObject).toList();
+        if (byName != null && !byName.isBlank()) {
+            String byNameParam = "%%%s%%".formatted(byName);
+            entityResults = catRepository.findByNameLike(byNameParam, sort);
+        }else {
+            entityResults = catRepository.findAll(sort);
+        }
+
+        return entityResults.stream().map(catEntityMapper::toDomainObject).toList();
     }
 
 

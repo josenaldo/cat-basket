@@ -1,7 +1,7 @@
 package br.com.josenaldo.catbasket.infrastructure.persistence;
 
-import br.com.josenaldo.catbasket.application.SortDirection;
-import br.com.josenaldo.catbasket.application.SortRequest;
+import br.com.josenaldo.catbasket.domain.application.SortDirection;
+import br.com.josenaldo.catbasket.domain.application.SortRequest;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;

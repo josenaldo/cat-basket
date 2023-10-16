@@ -5,5 +5,5 @@ import br.com.josenaldo.catbasket.domain.entity.Gender;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public record CreateCatResponse(UUID id, String name, Gender gender, LocalDate birthDate) {
+public record CatResponse(UUID id, String name, Gender gender, LocalDate birthDate) {
 }

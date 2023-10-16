@@ -1,6 +1,6 @@
-package br.com.josenaldo.catbasket.application.usecases;
+package br.com.josenaldo.catbasket.domain.application.usecases;
 
-import br.com.josenaldo.catbasket.application.gateways.CatGateway;
+import br.com.josenaldo.catbasket.domain.application.gateways.CatGateway;
 import br.com.josenaldo.catbasket.domain.entity.Cat;
 
 public class CreateCatInteractor {

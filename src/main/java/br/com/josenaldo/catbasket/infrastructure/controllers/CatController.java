@@ -1,14 +1,15 @@
 package br.com.josenaldo.catbasket.infrastructure.controllers;
 
-import br.com.josenaldo.catbasket.application.SortRequest;
-import br.com.josenaldo.catbasket.application.usecases.CreateCatInteractor;
-import br.com.josenaldo.catbasket.application.usecases.GetCatsInteractor;
+import br.com.josenaldo.catbasket.domain.application.SortRequest;
+import br.com.josenaldo.catbasket.domain.application.usecases.CreateCatInteractor;
+import br.com.josenaldo.catbasket.domain.application.usecases.GetCatsInteractor;
 import br.com.josenaldo.catbasket.domain.entity.Cat;
 import br.com.josenaldo.catbasket.infrastructure.controllers.util.SortParameterParser;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("cats")
@@ -29,14 +30,14 @@ public class CatController {
     }
 
     @PostMapping
-    public CreateCatResponse createCat(@Valid @RequestBody CreateCatRequest request) {
+    public CatResponse createCat(@Valid @RequestBody CreateCatRequest request) {
         Cat cat = catDTOMapper.toCat(request);
         Cat savedCat = createCatInteractor.createCat(cat);
         return catDTOMapper.toResponse(savedCat);
     }
 
     /**
-     * Retrieves a list of all cats, with optional sorting.
+     * Retrieves a list of cats, with optional sorting.
      * <p>
      * This endpoint allows you to retrieve a list of all cats with an optional sorting parameter.
      * The `sort` parameter should be provided in the following format:
@@ -55,11 +56,13 @@ public class CatController {
      * @return A list of cat entities sorted according to the provided criteria.
      */
     @GetMapping
-    public List<CreateCatResponse> getAllCats(@RequestParam(name="sort", defaultValue = "name,ASC", required = false) String sortParameters) {
+    public List<CatResponse> getCats(
+            @RequestParam(name = "sort", defaultValue = "name,ASC", required = false) String sortParameters,
+            @RequestParam(name = "byName", required = false) String byName) {
         List<SortRequest> sortRequests = sortParameterParser.parseSortParameter(sortParameters, List.of("name", "gender", "birthDate"));
 
-        List<Cat> allCats = getCatsInteractor.getAllCats(sortRequests);
+        List<Cat> cats = getCatsInteractor.getCats(byName, sortRequests);
 
-        return allCats.stream().map(catDTOMapper::toResponse).toList();
+        return cats.stream().map(catDTOMapper::toResponse).toList();
     }
 }
